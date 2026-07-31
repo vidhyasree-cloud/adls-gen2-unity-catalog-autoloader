@@ -1,65 +1,39 @@
-# adls-gen2-unity-catalog-autoloader
-
 # Azure Databricks Auto Loader Project
 
 ## Project Overview
 
-This project demonstrates an end-to-end data ingestion pipeline using Azure Databricks Auto Loader to ingest CSV files from Azure Data Lake Storage Gen2 into a Unity Catalog Bronze Delta table.
-
----
+This project demonstrates an end-to-end data ingestion pipeline using Azure Databricks Auto Loader to ingest CSV files from Azure Data Lake Storage Gen2 (ADLS Gen2) into a Unity Catalog Bronze Delta table.
 
 ## Technologies Used
 
 - Azure Databricks
-- Azure Data Lake Storage Gen2
+- Azure Data Lake Storage Gen2 (ADLS Gen2)
 - Unity Catalog
 - Delta Lake
 - PySpark
+- Auto Loader (cloudFiles)
 - Databricks Widgets
 - Databricks Jobs
 - OAuth Authentication
 
----
+## Key Features
 
-## Project Architecture
-
-(Add your architecture image here after uploading.)
-
----
-
-## Project Flow
-
-1. Upload CSV into ADLS Gen2
-2. Authenticate using Azure App Registration
-3. Read files using Auto Loader
-4. Infer schema
-5. Store checkpoints in Unity Catalog Volume
-6. Load data into Bronze Delta Table
-7. Execute using Databricks Job
-
----
-
-## Features
-
-- Auto Loader (cloudFiles)
-- OAuth Authentication
-- Unity Catalog
-- Bronze Delta Table
-- Parameterized Notebook
-- Databricks Widgets
-- Job Cluster
-- Delta Lake
-
----
+- Secure OAuth authentication using Azure App Registration.
+- Incremental file ingestion using Auto Loader.
+- Parameterized notebook using Databricks widgets.
+- Bronze Delta table created in Unity Catalog.
+- Job and Job Cluster configured for automated execution.
 
 ## Challenges
 
-- DBFS Mount Disabled
-- UC Volume Not Found
-- Azure CPU Quota Exceeded
+- DBFS mount not available.
+- Unity Catalog Volume configuration.
+- Azure CPU quota exceeded during Job Cluster creation.
 
----
+## Documentation
 
-## Outcome
+The complete project report is available in this repository.
 
-Successfully implemented an end-to-end Auto Loader pipeline for incremental ingestion from Azure Data Lake Storage Gen2 into Unity Catalog.
+## Note
+
+The Azure resources used for this project were deleted after testing and documentation to avoid unnecessary cloud costs.
