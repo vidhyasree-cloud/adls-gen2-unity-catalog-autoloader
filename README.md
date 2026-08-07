@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Apache Spark](https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
 
-# Project Overview
+## Project Overview
 
 This project implements an end-to-end, automated cloud data ingestion pipeline using **Azure Databricks** and **Unity Catalog**. The solution dynamically ingests healthcare dataset CSV files (`patient_data_2025_02_21.csv`) from **Azure Data Lake Storage Gen2 (ADLS Gen2)** into a managed **Unity Catalog Bronze Delta table** using Databricks **Auto Loader (`cloudFiles`)**.
 
