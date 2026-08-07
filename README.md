@@ -1,4 +1,4 @@
-# Azure Databricks Auto Loader to Unity Catalog Ingestion Pipeline
+# Azure Databricks Real-Time Healthcare Data Ingestion Pipeline
 
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 ![Databricks](https://img.shields.io/badge/databricks-%23FF3621.svg?style=for-the-badge&logo=databricks&logoColor=white)
@@ -7,20 +7,31 @@
 
 ## Project Overview
 
-This project demonstrates an end-to-end data ingestion pipeline built on **Azure Databricks** and **Unity Catalog**. The pipeline ingests raw CSV files dynamically from **Azure Data Lake Storage Gen2 (ADLS Gen2)** using Databricks **Auto Loader (`cloudFiles`)** and populates a **Bronze Delta Lake table** with schema inference and incremental loading.
+This project demonstrates an end-to-end data engineering pipeline designed to ingest **real-time healthcare data** into a **Medallion Architecture** managed by **Azure Databricks** and **Unity Catalog**. 
 
-The entire workflow is orchestrated via **Databricks Workflows (Jobs)**, parameterized using **Databricks Widgets**, and secured via **OAuth 2.0 Service Principal authentication**.
+Using **Databricks Auto Loader (`cloudFiles`)**, the pipeline streams raw CSV data from **Azure Data Lake Storage Gen2 (ADLS Gen2)** incrementally into a **Unity Catalog Bronze Delta table** with zero manual hardcoding. The notebook is fully parameterized using **Databricks Widgets** and orchestrated with **Databricks Jobs** running on dedicated **Job Clusters**.
 
 ---
 
-## Architecture & Data Flow
+##  Architecture & Data Flow
 
 ```text
-[ ADLS Gen2 (CSV Storage) ]
-            │
-            │ (OAuth 2.0 / Service Principal / Unity Catalog External Location)
-            ▼
-[ Databricks Auto Loader (cloudFiles) ]
-            │ (Schema Inference & Evolution)
-            ▼
-[ Unity Catalog ] ──> [ Bronze Delta Table ]
+[ Real-Time Healthcare Data ] 
+              │
+              ▼
+  [ Source: ADLS Gen2 Storage ]
+              │
+              │ (OAuth 2.0 / Service Principal / Unity Catalog External Location)
+              ▼
+  [ Databricks Auto Loader Logic ]  <── (Dynamic Parameters via Widgets / No Hardcoded Paths)
+              │
+              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                       Unity Catalog                         │
+│  ┌─────────────────┐                                        │
+│  │  Bronze Layer   │ ──> (Raw Data - Incremental Stream)    │
+│  └─────────────────┘                                        │
+└─────────────────────────────────────────────────────────────┘
+              │
+              ▼
+  [ Databricks Workflows / Job Cluster Orchestration ]
